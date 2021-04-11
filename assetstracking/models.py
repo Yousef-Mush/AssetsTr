@@ -14,7 +14,7 @@ class Subscriber(models.Model):
 class Employee(models.Model):
     employee_id = models.IntegerField(null=True)
     employee_name = models.CharField(max_length=200, null=True)
-    employee_salary = models.FloatField(null=True)
+    employee_email = models.CharField(max_length=200, null=True)
     
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
      
@@ -57,6 +57,14 @@ class Borrowing(models.Model):
 
     employee_id_scanned = models.IntegerField(null=True,default=0)
     asset_id_scanned = models.IntegerField(null=True,default=0)
+    reader_code = models.CharField(max_length=200, null=True, default=0)
 
     def __str__(self): 
         return str(self.borrowing_id)
+        
+class ClientAuth(models.Model):
+    client_username = models.CharField(max_length=20, null=True)
+    client_password = models.CharField(max_length=20, null=True)
+
+    def __str__(self): 
+        return str(self.client_username)
